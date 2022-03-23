@@ -1,5 +1,7 @@
 # Summary
 
+[What is Pleroma?](./what-is-pleroma.md)
+
 - [Getting Started](./getting-started.md)
   - [Installation](./installation.md)
   - [Configuration](./configuration.md)
