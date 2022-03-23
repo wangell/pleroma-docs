@@ -1,0 +1,6 @@
+[book]
+authors = ["William H.S. Angell"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Pleroma"
