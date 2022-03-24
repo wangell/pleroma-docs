@@ -21,3 +21,5 @@
   - [Supervisor](./pleroma/supervisor.md)
   - [External Supervision, Containers](./pleroma/external-supervision.md)
 - [Charisma](./charisma.md)
+- [Pleromic Software](./pleromic-software.md)
+  - [Erd-talk](./erd-talk.md)
