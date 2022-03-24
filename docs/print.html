@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="sidebar-visible no-js rust">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,10 @@
 
 
         <!-- Custom HTML head -->
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -37,7 +40,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -63,7 +66,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -82,7 +85,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="what-is-pleroma.html">What is Pleroma?</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">1.2.</strong> Configuration</a></li></ol></li><li class="chapter-item expanded "><a href="allo.html"><strong aria-hidden="true">2.</strong> Allo</a></li><li class="chapter-item expanded "><a href="hylic.html"><strong aria-hidden="true">3.</strong> Hylic</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hylic/basics.html"><strong aria-hidden="true">3.1.</strong> Basics</a></li><li class="chapter-item expanded "><a href="hylic/messaging.html"><strong aria-hidden="true">3.2.</strong> Messaging, Entities, Vats</a></li><li class="chapter-item expanded "><a href="hylic/constraints.html"><strong aria-hidden="true">3.3.</strong> Entity Constraints</a></li><li class="chapter-item expanded "><a href="hylic/capabilities.html"><strong aria-hidden="true">3.4.</strong> Capabilities</a></li><li class="chapter-item expanded "><a href="hylic/alien.html"><strong aria-hidden="true">3.5.</strong> Alien Types</a></li><li class="chapter-item expanded "><a href="hylic/distributed-primitives.html"><strong aria-hidden="true">3.6.</strong> Distributed Primitives</a></li></ol></li><li class="chapter-item expanded "><a href="pleroma.html"><strong aria-hidden="true">4.</strong> Pleroma</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pleroma/stores.html"><strong aria-hidden="true">4.1.</strong> Stores</a></li><li class="chapter-item expanded "><a href="pleroma/message-bus.html"><strong aria-hidden="true">4.2.</strong> Message Bus</a></li><li class="chapter-item expanded "><a href="pleroma/ingresses.html"><strong aria-hidden="true">4.3.</strong> Ingresses</a></li><li class="chapter-item expanded "><a href="pleroma/scheduling.html"><strong aria-hidden="true">4.4.</strong> Job Queue + Scheduler</a></li><li class="chapter-item expanded "><a href="pleroma/supervisor.html"><strong aria-hidden="true">4.5.</strong> Supervisor</a></li><li class="chapter-item expanded "><a href="pleroma/external-supervision.html"><strong aria-hidden="true">4.6.</strong> External Supervision, Containers</a></li></ol></li><li class="chapter-item expanded "><a href="charisma.html"><strong aria-hidden="true">5.</strong> Charisma</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="what-is-pleroma.html">What is Pleroma?</a></li><li class="chapter-item expanded "><a href="getting-started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">1.1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="configuration.html"><strong aria-hidden="true">1.2.</strong> Configuration</a></li><li class="chapter-item expanded "><a href="running.html"><strong aria-hidden="true">1.3.</strong> Running Pleroma</a></li></ol></li><li class="chapter-item expanded "><a href="allo.html"><strong aria-hidden="true">2.</strong> Allo</a></li><li class="chapter-item expanded "><a href="hylic.html"><strong aria-hidden="true">3.</strong> Hylic</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="hylic/basics.html"><strong aria-hidden="true">3.1.</strong> Basics</a></li><li class="chapter-item expanded "><a href="hylic/messaging.html"><strong aria-hidden="true">3.2.</strong> Messaging, Entities, Vats</a></li><li class="chapter-item expanded "><a href="hylic/constraints.html"><strong aria-hidden="true">3.3.</strong> Entity Constraints</a></li><li class="chapter-item expanded "><a href="hylic/capabilities.html"><strong aria-hidden="true">3.4.</strong> Capabilities</a></li><li class="chapter-item expanded "><a href="hylic/alien.html"><strong aria-hidden="true">3.5.</strong> Alien Types</a></li><li class="chapter-item expanded "><a href="hylic/distributed-primitives.html"><strong aria-hidden="true">3.6.</strong> Distributed Primitives</a></li></ol></li><li class="chapter-item expanded "><a href="pleroma.html"><strong aria-hidden="true">4.</strong> Pleroma</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pleroma/stores.html"><strong aria-hidden="true">4.1.</strong> Stores</a></li><li class="chapter-item expanded "><a href="pleroma/message-bus.html"><strong aria-hidden="true">4.2.</strong> Message Bus</a></li><li class="chapter-item expanded "><a href="pleroma/ingresses.html"><strong aria-hidden="true">4.3.</strong> Ingresses</a></li><li class="chapter-item expanded "><a href="pleroma/scheduling.html"><strong aria-hidden="true">4.4.</strong> Job Queue + Scheduler</a></li><li class="chapter-item expanded "><a href="pleroma/supervisor.html"><strong aria-hidden="true">4.5.</strong> Supervisor</a></li><li class="chapter-item expanded "><a href="pleroma/external-supervision.html"><strong aria-hidden="true">4.6.</strong> External Supervision, Containers</a></li></ol></li><li class="chapter-item expanded "><a href="charisma.html"><strong aria-hidden="true">5.</strong> Charisma</a></li><li class="chapter-item expanded "><a href="pleromic-software.html"><strong aria-hidden="true">6.</strong> Pleromic Software</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="erd-talk.html"><strong aria-hidden="true">6.1.</strong> Erd-talk</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -100,8 +103,8 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
@@ -144,7 +147,103 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="what-is-pleroma"><a class="header" href="#what-is-pleroma">What is Pleroma?</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div>
+<p>Pleroma is a distributed, object-oriented operating system/VM inspired by the original vision of Alan Kay's Smalltalk, the E programming language, and Plan9/Inferno.</p>
+<p>The creator or creators of Pleroma are entirely unknown - it is a found operating system.  The specification was discovered in a cache located in Oxyrhynchus, Egypt dating back to the 3rd century.</p>
+<p>Pleroma is the answer to the following questions/problems:</p>
+<ul>
+<li>What happened to Smalltalk?</li>
+<li>I want to host reliable internet services from multiple computers (some on my personal network, some on the cloud, some mobile), but Kuberenetes is too complex</li>
+<li>Distributed software always ends up becoming centralized due to reliability</li>
+<li>Why do I need Protobufs, API specs?</li>
+<li>I feel unsafe downloading/running code from Github without reading it first</li>
+<li>I have a lot of computing devices and no way to manage them uniformly</li>
+<li>I need concurrency without all of the baggage</li>
+<li>Actor systems are pointless without a strong distributed story</li>
+<li>I don't want to know, or care, about where my software is running</li>
+<li>Personal computing research has been completely stagnant, despite major technology advances in the last 50 years</li>
+<li>I think that E/Plan9 were ahead of their time and/or interesting but ultimately useless</li>
+<li>Using Erlang doesn't make me feel good inside, and I don't know why</li>
+<li>I want to host own email, but due to a laundry list of problems, that's not possible</li>
+</ul>
+<p>The four core components are:</p>
+<ul>
+<li><a href="./pleroma.html">Pleroma</a>: the actual operating system</li>
+<li><a href="./hylic.html">Hylic</a>: a statically-typed language</li>
+<li><a href="./allo.html">Allo</a>: the communication tool for interacting with Pleroma</li>
+<li><a href="./charisma.html">Charisma</a>: a novel IDE integrating voice and AST editing</li>
+</ul>
+<p>Pleroma is versioned according to the solstices.  <code>w22</code> and <code>s22</code> referring to the winter and summer solstices of 2022, respectively.  Versions can't be patched unless there are major security issues, in which case one can append <code>p</code> and an incrementing number (e.g. <code>w22p4</code>).  Otherwise, a version is frozen in time and all new development takes place on the next solstice release.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<p>Download Pleroma here:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation"><a class="header" href="#getting-started---installation">Getting Started - Installation</a></h1>
+<h2 id="x86--x86_64"><a class="header" href="#x86--x86_64">x86 / x86_64</a></h2>
+<h2 id="risc-v"><a class="header" href="#risc-v">RISC V</a></h2>
+<h2 id="arm"><a class="header" href="#arm">ARM</a></h2>
+<h2 id="xenkvm"><a class="header" href="#xenkvm">Xen/KVM</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation-1"><a class="header" href="#getting-started---installation-1">Getting Started - Installation</a></h1>
+<p>Run Pleroma on the first node:</p>
+<pre><code>pleroma
+</code></pre>
+<p>Run Pleroma on other nodes, specifying any accessible cluster IPs:</p>
+<pre><code>pleroma -f 192.168.178.1
+</code></pre>
+<p>Pleroma can also automatically handle local discovery:</p>
+<pre><code>pleroma --auto
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---basics"><a class="header" href="#hylic---basics">Hylic - Basics</a></h1>
+<pre><code>~sys
+
+ε HelloWorld
+	δ main(env: sys.env) -&gt; u8
+		loc a : u8 := 1 + 1
+</code></pre>
+<p>The line</p>
+<pre><code>~sys
+</code></pre>
+<p>imports code from another module.</p>
+<pre><code>ε HelloWorld
+</code></pre>
+<p>This line specifies an entity called HelloWorld.  Everything in Pleroma is an entity, except those things that aren't.
+Every entity contains data and functions.  An entity specification is not an entity itself - just a blueprint.</p>
+<pre><code>δ main(env: sys.env) -&gt; u8
+</code></pre>
+<p>Says that there is a function <code>main</code>, that takes a variable <code>env</code> of type <code>sys.env</code> and returns an <code>int</code>.
+The <code>δ</code> specifies the function as one with side-effects.  Alternatively, a <code>λ</code> specifies the function as pure.  Pure functions cannot perform side-effects.</p>
+<pre><code>loc a : u8 := 1 + 1
+</code></pre>
+<p>Says to create a variable <code>a</code> of type <code>u8</code> and set its contents to <code>1 + 1</code>.  The type of <code>a</code> is a <code>loc u8</code>, further explained later in <a href="hylic/./hylic/messaging.html">Messaging, Entities, Vats</a>.  By default, all variables are local.  Local variables mean local to the entity.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---messaging"><a class="header" href="#hylic---messaging">Hylic - Messaging</a></h1>
+<p>Messaging can be performed in many different ways in Hylic and is optionally restrictive.</p>
+<p>All objects can be called synchronously, asynchronously, and via a Promise-based interface.</p>
+<h2 id="synchronous-message-passing"><a class="header" href="#synchronous-message-passing">Synchronous Message Passing</a></h2>
+<p>When we call an object synchronously, we wait for the response of the object before continuing.</p>
+<pre><code>anObject.doThing()
+</code></pre>
+<h2 id="asynchronous-message-passing"><a class="header" href="#asynchronous-message-passing">Asynchronous Message Passing</a></h2>
+<pre><code>anObject ! doThing
+</code></pre>
+<p>Passes a message and ignores the result.</p>
+<h2 id="promises"><a class="header" href="#promises">Promises</a></h2>
+<pre><code>myProm : Promise u8 := anObject &lt;- doThing
+</code></pre>
+<p>Promises can be resolved using the following methods: ...</p>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="erd-talk"><a class="header" href="#erd-talk">Erd-talk</a></h1>
+<p>Erd-talk is a web-of-trust/reputation system for URIs.</p>
+<ol>
+<li>URIs can be assigned key/values, e.g. &quot;example.com:trust:1.0&quot;</li>
+<li>You can query friendly erd-talk clusters for their values and compute against them, e.g. &quot;Gather all the trust values from friends about URI x and return the average&quot;</li>
+<li>You can handle queries in a custom way.  Instead of just returning a value, you can compute, or recursively (via friendly clusters) compute, a new value.</li>
+</ol>
+<p>What can erd-talk be used for?</p>
+<ul>
+<li>Reweight Amazon/Yelp reviews according to your friends/family.</li>
+<li>Discover new or interesting websites</li>
+<li>Help decide whether a program/website/business is trustworthy or not</li>
+<li>Calculate impact scores of papers independent of publishers</li>
+<li>Find inaccuracies in news stories</li>
+</ul>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

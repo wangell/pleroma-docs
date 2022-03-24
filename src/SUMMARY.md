@@ -5,6 +5,7 @@
 - [Getting Started](./getting-started.md)
   - [Installation](./installation.md)
   - [Configuration](./configuration.md)
+  - [Running Pleroma](./running.md)
 - [Allo](./allo.md)
 - [Hylic](./hylic.md)
   - [Basics](./hylic/basics.md)

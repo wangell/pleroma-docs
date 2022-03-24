@@ -7,3 +7,6 @@ title = "Pleroma"
 
 [build]
 build-dir = "docs"
+
+[output.html]
+default-theme = "rust"
