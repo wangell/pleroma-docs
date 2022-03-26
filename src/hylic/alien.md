@@ -2,7 +2,7 @@
 
 One of the key features of Pleroma is the ability to interface with foreign clusters.
 
-This can be achieved using the alien reference type.
+This can be achieved using the alien reference type `aln`.
 
 ```
 ~wikipedia
