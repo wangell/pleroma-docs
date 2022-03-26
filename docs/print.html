@@ -326,6 +326,18 @@ myProm ! doThing
         ! loop
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---entity-constraints"><a class="header" href="#hylic---entity-constraints">Hylic - Entity Constraints</a></h1>
+<p>Entities can be configured to be scheduled according to constraints.  If an Entity is imported into a vat, the vat inherits the constraints.  Collisions between constraints must be handled manually.</p>
+<p>Constraints consist of a list of either tags or boolean expressions.  A tag preceded by an &amp; operator will call the equivalent function.  A true boolean function/expression means that the object is able to be scheduled on a node.</p>
+<pre><code>ε HelloWorld
+    - keyboard
+    - monitors &gt; 2
+    &amp; boolean-callback
+
+	δ boolean-callback(node: node.env) -&gt; bool
+        ...
+        ↵ #t
+
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="erd-talk"><a class="header" href="#erd-talk">Erd-talk</a></h1>
 <p>Erd-talk is a web-of-trust/reputation system for URIs.</p>
