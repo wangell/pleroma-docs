@@ -182,6 +182,14 @@
 
 myProm ! doThing
 </code></pre>
+<h2 id="message-processing"><a class="header" href="#message-processing">Message Processing</a></h2>
+<p>One of the key features of Pleroma is the ability to mix async and synchronous code.  It is important to understand this feature, as it is enabled by default: all code must yield or the vat will never receive messages.</p>
+<p>To implement an infinite loop within a vat, one must use self-messaging:</p>
+<pre><code>ε HelloWorld
+	δ loop() -&gt; ()
+        do-something()
+        ! loop
+</code></pre>
 
                     </main>
 

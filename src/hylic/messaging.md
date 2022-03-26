@@ -58,3 +58,16 @@ myProm : Promise far anObject := $anObject(1)
 
 myProm ! doThing
 ```
+
+## Message Processing
+
+One of the key features of Pleroma is the ability to mix async and synchronous code.  It is important to understand this feature, as it is enabled by default: all code must yield or the vat will never receive messages.
+
+To implement an infinite loop within a vat, one must use self-messaging:
+
+```
+ε HelloWorld
+	δ loop() -> ()
+        do-something()
+        ! loop
+```

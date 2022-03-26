@@ -249,6 +249,37 @@ The <code>δ</code> specifies the function as one with side-effects.  Alternativ
 <pre><code>loc a : u8 := 1 + 1
 </code></pre>
 <p>Says to create a variable <code>a</code> of type <code>u8</code> and set its contents to <code>1 + 1</code>.  The type of <code>a</code> is a <code>loc u8</code>, further explained later in <a href="hylic/./hylic/messaging.html">Messaging, Entities, Vats</a>.  By default, all variables are local.  Local variables mean local to the entity.</p>
+<h2 id="built-in-types"><a class="header" href="#built-in-types">Built-in Types</a></h2>
+<p>Integer: u8, u16, u32, u64
+Float: f32, f64
+Boolean: bool (<code>#t</code>/<code>#f</code>)
+Character: char (```a``)
+String: str </p>
+<h2 id="conditionals"><a class="header" href="#conditionals">Conditionals</a></h2>
+<p>The match statement handles most conditionals in Pleroma:</p>
+<pre><code>? 1 == 1
+    #t
+        io.print(&quot;Yes!&quot;)
+    #f
+        io.print(&quot;No!&quot;)
+</code></pre>
+<p>The empty lines can be left off in the case of only one statement:</p>
+<pre><code>? 1 == 1
+    #t io.print(&quot;Yes!&quot;)
+    #f io.print(&quot;No!&quot;)
+</code></pre>
+<p>If no cases are given, an implied true match is inserted:</p>
+<pre><code>? 1 == 1
+    io.print(&quot;Yes!&quot;)
+</code></pre>
+<h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
+<p>For statements can be constructed with the pipe operator, similar to math:</p>
+<pre><code>my-list : [u8] = [1, 2, 3, 4]
+
+x | my-list
+    do-something(x)
+</code></pre>
+<p>Indices can be extracted from the list by adding an additional variable <code>i, x | my-list</code></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---messaging"><a class="header" href="#hylic---messaging">Hylic - Messaging</a></h1>
 <p>Messaging can be performed in many different ways in Hylic and is optionally restrictive.</p>
 <p>All objects can be called synchronously, asynchronously, and via a Promise-based interface.</p>
@@ -285,6 +316,14 @@ The <code>δ</code> specifies the function as one with side-effects.  Alternativ
 <pre><code>myProm : Promise far anObject := $anObject(1)
 
 myProm ! doThing
+</code></pre>
+<h2 id="message-processing"><a class="header" href="#message-processing">Message Processing</a></h2>
+<p>One of the key features of Pleroma is the ability to mix async and synchronous code.  It is important to understand this feature, as it is enabled by default: all code must yield or the vat will never receive messages.</p>
+<p>To implement an infinite loop within a vat, one must use self-messaging:</p>
+<pre><code>ε HelloWorld
+	δ loop() -&gt; ()
+        do-something()
+        ! loop
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---entity-constraints"><a class="header" href="#hylic---entity-constraints">Hylic - Entity Constraints</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
