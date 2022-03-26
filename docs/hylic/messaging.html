@@ -159,7 +159,29 @@
 <h2 id="promises"><a class="header" href="#promises">Promises</a></h2>
 <pre><code>myProm : Promise u8 := anObject &lt;- doThing
 </code></pre>
-<p>Promises can be resolved using the following methods: ...</p>
+<p>Promises can be resolved using the resolution operator:</p>
+<pre><code>@ promise-example:
+    # do something with the returned value
+    
+@ [more-promises1, more-promises2, more-promises3]:
+    # Resolve several promises
+</code></pre>
+<h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
+<p>Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:</p>
+<pre><code>$anObject(1)
+</code></pre>
+<p>Constructing a new vat always returns the type <code>Promise far object-type</code>, e.g.:</p>
+<pre><code>myProm : Promise far anObject := $anObject(1)
+
+@ myProm:
+    # The promise is resolved to a far anObject, we can send messages now
+    myProm ! doThing
+</code></pre>
+<p>Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.</p>
+<pre><code>myProm : Promise far anObject := $anObject(1)
+
+myProm ! doThing
+</code></pre>
 
                     </main>
 

@@ -10,7 +10,6 @@ When we call an object synchronously, we wait for the response of the object bef
 ```
 anObject.doThing()
 ```
-
 ## Asynchronous Message Passing
 
 ```
@@ -24,4 +23,38 @@ Passes a message and ignores the result.
 myProm : Promise u8 := anObject <- doThing
 ```
 
-Promises can be resolved using the following methods: ...
+Promises can be resolved using the resolution operator:
+
+```
+@ promise-example:
+    # do something with the returned value
+    
+@ [more-promises1, more-promises2, more-promises3]:
+    # Resolve several promises
+```
+
+## Vats
+
+Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:
+
+```
+$anObject(1)
+```
+
+Constructing a new vat always returns the type `Promise far object-type`, e.g.:
+
+```
+myProm : Promise far anObject := $anObject(1)
+
+@ myProm:
+    # The promise is resolved to a far anObject, we can send messages now
+    myProm ! doThing
+```
+
+Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.
+
+```
+myProm : Promise far anObject := $anObject(1)
+
+myProm ! doThing
+```

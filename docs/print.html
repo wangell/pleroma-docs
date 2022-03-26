@@ -175,13 +175,42 @@
 </ul>
 <p>Pleroma is versioned according to the solstices.  <code>w22</code> and <code>s22</code> referring to the winter and summer solstices of 2022, respectively.  Versions can't be patched unless there are major security issues, in which case one can append <code>p</code> and an incrementing number (e.g. <code>w22p4</code>).  Otherwise, a version is frozen in time and all new development takes place on the next solstice release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>Download Pleroma here:</p>
+<p>First, download by cloning the Git repository here:</p>
+<p><code>git clone https://github.com/wangell/pleroma</code></p>
+<p>Continue to the <a href="./installation.html">installation instructions</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation"><a class="header" href="#getting-started---installation">Getting Started - Installation</a></h1>
+<p>After cloning the repository, follow the instructions for your specific architecture below:</p>
 <h2 id="x86--x86_64"><a class="header" href="#x86--x86_64">x86 / x86_64</a></h2>
+<pre><code>cd pleroma
+./gen_make.sh
+make
+ln -s build/pleroma pleroma
+ln -s build/allo allo
+</code></pre>
 <h2 id="risc-v"><a class="header" href="#risc-v">RISC V</a></h2>
 <h2 id="arm"><a class="header" href="#arm">ARM</a></h2>
 <h2 id="xenkvm"><a class="header" href="#xenkvm">Xen/KVM</a></h2>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation-1"><a class="header" href="#getting-started---installation-1">Getting Started - Installation</a></h1>
+<p>Continue to <a href="./configuration.html">configuration</a> to finish setting up your cluster.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---configuration"><a class="header" href="#getting-started---configuration">Getting Started - Configuration</a></h1>
+<p>Use a text editor to edit pleroma.yaml.</p>
+<p>Assign a name and a network device for the cluster.</p>
+<pre><code>---
+name: bruno
+netdev: tun0
+</code></pre>
+<p>Configure the resources that will be made available to the cluster:</p>
+<pre><code>resources:
+    - keyboard
+    - monitor
+    - mouse
+    - gpu
+</code></pre>
+<p>Use tags to configure node-specific values that will be used during constraint satisfaction.</p>
+<pre><code>tags:
+    safe: ~
+    stability-rating: 4
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation-1"><a class="header" href="#getting-started---installation-1">Getting Started - Installation</a></h1>
 <p>Run Pleroma on the first node:</p>
 <pre><code>pleroma
 </code></pre>
@@ -191,7 +220,13 @@
 <p>Pleroma can also automatically handle local discovery:</p>
 <pre><code>pleroma --auto
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---basics"><a class="header" href="#hylic---basics">Hylic - Basics</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="allo"><a class="header" href="#allo">Allo</a></h1>
+<p>Allo is a cluster-management and access tool for Pleroma.</p>
+<p>Run <code>allo -g</code> for the visual mode.</p>
+<p><code>allo nodes</code> will return a list of currently running nodes.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hylic"><a class="header" href="#hylic">Hylic</a></h1>
+<p>Hylic is a statically-typed language for writing Pleroma entities/programs.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---basics"><a class="header" href="#hylic---basics">Hylic - Basics</a></h1>
 <pre><code>~sys
 
 ε HelloWorld
@@ -227,8 +262,31 @@ The <code>δ</code> specifies the function as one with side-effects.  Alternativ
 <h2 id="promises"><a class="header" href="#promises">Promises</a></h2>
 <pre><code>myProm : Promise u8 := anObject &lt;- doThing
 </code></pre>
-<p>Promises can be resolved using the following methods: ...</p>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
+<p>Promises can be resolved using the resolution operator:</p>
+<pre><code>@ promise-example:
+    # do something with the returned value
+    
+@ [more-promises1, more-promises2, more-promises3]:
+    # Resolve several promises
+</code></pre>
+<h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
+<p>Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:</p>
+<pre><code>$anObject(1)
+</code></pre>
+<p>Constructing a new vat always returns the type <code>Promise far object-type</code>, e.g.:</p>
+<pre><code>myProm : Promise far anObject := $anObject(1)
+
+@ myProm:
+    # The promise is resolved to a far anObject, we can send messages now
+    myProm ! doThing
+</code></pre>
+<p>Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.</p>
+<pre><code>myProm : Promise far anObject := $anObject(1)
+
+myProm ! doThing
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---entity-constraints"><a class="header" href="#hylic---entity-constraints">Hylic - Entity Constraints</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="erd-talk"><a class="header" href="#erd-talk">Erd-talk</a></h1>
 <p>Erd-talk is a web-of-trust/reputation system for URIs.</p>
 <ol>

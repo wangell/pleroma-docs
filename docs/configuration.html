@@ -145,7 +145,26 @@
 
                 <div id="content" class="content">
                     <main>
-                        
+                        <h1 id="getting-started---configuration"><a class="header" href="#getting-started---configuration">Getting Started - Configuration</a></h1>
+<p>Use a text editor to edit pleroma.yaml.</p>
+<p>Assign a name and a network device for the cluster.</p>
+<pre><code>---
+name: bruno
+netdev: tun0
+</code></pre>
+<p>Configure the resources that will be made available to the cluster:</p>
+<pre><code>resources:
+    - keyboard
+    - monitor
+    - mouse
+    - gpu
+</code></pre>
+<p>Use tags to configure node-specific values that will be used during constraint satisfaction.</p>
+<pre><code>tags:
+    safe: ~
+    stability-rating: 4
+</code></pre>
+
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
