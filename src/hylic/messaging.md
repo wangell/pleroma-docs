@@ -26,10 +26,10 @@ myProm : Promise u8 := anObject <- doThing
 Promises can be resolved using the resolution operator:
 
 ```
-@ promise-example:
+@ promise-example
     # do something with the returned value
     
-@ [more-promises1, more-promises2, more-promises3]:
+@ [more-promises1, more-promises2, more-promises3]
     # Resolve several promises
 ```
 
@@ -46,7 +46,7 @@ Constructing a new vat always returns the type `Promise far object-type`, e.g.:
 ```
 myProm : Promise far anObject := $anObject(1)
 
-@ myProm:
+@ myProm
     # The promise is resolved to a far anObject, we can send messages now
     myProm ! doThing
 ```
