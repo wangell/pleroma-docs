@@ -41,7 +41,7 @@ Float: f32, f64
 
 Boolean: bool (`#t`/`#f`)
 
-Character: char (```a``)
+Character: char (`a)
 
 String: str 
 
