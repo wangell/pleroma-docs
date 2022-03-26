@@ -20,7 +20,7 @@ Pleroma is the answer to the following questions/problems:
 - Personal computing research has been completely stagnant, despite major technology advances in the last 50 years
 - I think that E/Plan9 were ahead of their time and/or interesting but ultimately useless
 - Using Erlang doesn't make me feel good inside, and I don't know why
-- I want to host own email, but due to a laundry list of problems, that's not possible
+- I want to host my own email, but due to a laundry list of problems, that's not possible
     
 The four core components are:
 - [Pleroma](./pleroma.md): the actual operating system

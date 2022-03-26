@@ -36,9 +36,13 @@ Says to create a variable `a` of type `u8` and set its contents to `1 + 1`.  The
 ## Built-in Types
 
 Integer: u8, u16, u32, u64
+
 Float: f32, f64
+
 Boolean: bool (`#t`/`#f`)
+
 Character: char (```a``)
+
 String: str 
 
 ## Conditionals

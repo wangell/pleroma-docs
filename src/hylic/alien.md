@@ -9,7 +9,7 @@ This can be achieved using the alien reference type `aln`.
 
 ε HelloWorld
 	δ main(env: sys.env) -> u8
-        aln wiki : wikipedia.Wikipedia = wikipedia.wikipedia()
+        aln wiki : wikipedia.Wikipedia = wikipedia.Wikipedia()
 
 ```
 

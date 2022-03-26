@@ -164,7 +164,7 @@
 <li>Personal computing research has been completely stagnant, despite major technology advances in the last 50 years</li>
 <li>I think that E/Plan9 were ahead of their time and/or interesting but ultimately useless</li>
 <li>Using Erlang doesn't make me feel good inside, and I don't know why</li>
-<li>I want to host own email, but due to a laundry list of problems, that's not possible</li>
+<li>I want to host my own email, but due to a laundry list of problems, that's not possible</li>
 </ul>
 <p>The four core components are:</p>
 <ul>
@@ -250,11 +250,11 @@ The <code>δ</code> specifies the function as one with side-effects.  Alternativ
 </code></pre>
 <p>Says to create a variable <code>a</code> of type <code>u8</code> and set its contents to <code>1 + 1</code>.  The type of <code>a</code> is a <code>loc u8</code>, further explained later in <a href="hylic/./hylic/messaging.html">Messaging, Entities, Vats</a>.  By default, all variables are local.  Local variables mean local to the entity.</p>
 <h2 id="built-in-types"><a class="header" href="#built-in-types">Built-in Types</a></h2>
-<p>Integer: u8, u16, u32, u64
-Float: f32, f64
-Boolean: bool (<code>#t</code>/<code>#f</code>)
-Character: char (```a``)
-String: str </p>
+<p>Integer: u8, u16, u32, u64</p>
+<p>Float: f32, f64</p>
+<p>Boolean: bool (<code>#t</code>/<code>#f</code>)</p>
+<p>Character: char (```a``)</p>
+<p>String: str </p>
 <h2 id="conditionals"><a class="header" href="#conditionals">Conditionals</a></h2>
 <p>The match statement handles most conditionals in Pleroma:</p>
 <pre><code>? 1 == 1
@@ -347,7 +347,7 @@ myProm ! doThing
 
 ε HelloWorld
 	δ main(env: sys.env) -&gt; u8
-        aln wiki : wikipedia.Wikipedia = wikipedia.wikipedia()
+        aln wiki : wikipedia.Wikipedia = wikipedia.Wikipedia()
 
 </code></pre>
 <p>This creates a messageable object reference, much like a far reference - except that a proxy object is instantiated in its place.</p>
