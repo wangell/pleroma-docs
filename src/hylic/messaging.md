@@ -20,7 +20,7 @@ Passes a message and ignores the result.
 ## Promises
 
 ```
-myProm : Promise u8 := anObject <- doThing
+myProm : Promise u8 := anObject ! doThing
 ```
 
 Promises can be resolved using the resolution operator:
