@@ -5,13 +5,16 @@ Entities can be configured to be scheduled according to constraints.  If an Enti
 Constraints consist of a list of either tags or boolean expressions.  A tag preceded by an & operator will call the equivalent function.  A true boolean function/expression means that the object is able to be scheduled on a node.
 
 ```
+~resources rsc
+
 ε HelloWorld
-    - keyboard
-    - monitors > 2
-    & boolean-callback
+    - rsc.has("keyboard")
+    - rsc.gt("monitors", 2)
+    - boolean-callback boolean-collision
 
 	δ boolean-callback(node: node.env) -> bool
         ...
-        ↵ #t
+        ? rsc.present("keyboard")
+            ↵ #t
 
 ```
