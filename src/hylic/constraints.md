@@ -6,8 +6,10 @@ Constraints consist of a list of either tags or boolean expressions.  A tag prec
 
 ```
 ~resources rsc
+~node nd
 
 ε HelloWorld
+    - nd.is("unixborn")
     - rsc.has("keyboard")
     - rsc.gt("monitors", 2)
     - boolean-callback boolean-collision
