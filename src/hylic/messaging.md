@@ -20,18 +20,20 @@ Passes a message and ignores the result.
 ## Promises
 
 ```
-myProm : Promise u8 := anObject ! doThing
+myProm : @u8 := anObject ! doThing
 ```
 
 Promises can be resolved using the resolution operator:
 
 ```
 @ promise-example
-    # do something with the returned value
+    # do something with the returned value, promise-example
     
-@ [more-promises1, more-promises2, more-promises3]
+@ let x : [@] = [more-promises1, more-promises2, more-promises3]
     # Resolve several promises
 ```
+
+In this case, each promise variable is shadowed by the resolved version.
 
 ## Vats
 
@@ -41,10 +43,10 @@ Vats form local object-graphs.  Use the following syntax to construct an object 
 $anObject(1)
 ```
 
-Constructing a new vat always returns the type `Promise far object-type`, e.g.:
+Constructing a new vat always returns the type `@ far object-type`, e.g.:
 
 ```
-myProm : Promise far anObject := $anObject(1)
+myProm : @far anObject := $anObject(1)
 
 @ myProm
     # The promise is resolved to a far anObject, we can send messages now
@@ -54,7 +56,7 @@ myProm : Promise far anObject := $anObject(1)
 Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.
 
 ```
-myProm : Promise far anObject := $anObject(1)
+myProm : @ far anObject := $anObject(1)
 
 myProm ! doThing
 ```

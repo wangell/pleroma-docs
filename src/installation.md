@@ -1,6 +1,6 @@
 # Getting Started - Installation
 
-After cloning the repository, follow the instructions for your specific architecture below:
+After cloning the repository and setting up your locale, follow the instructions for your specific architecture below:
 
 ## x86 / x86_64
 

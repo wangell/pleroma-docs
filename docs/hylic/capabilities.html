@@ -147,6 +147,20 @@
                     <main>
                         <h1 id="hylic---capabilities"><a class="header" href="#hylic---capabilities">Hylic - Capabilities</a></h1>
 <p>Objects in Pleroma can only be accessed/messaged by reference.  It's possible to make your objects accessible from the kernel and to guard them with ACLs.</p>
+<p>Entities are able to access unique or node-unique system objects by adding an inoculation to the entity definition:</p>
+<pre><code>~pleroma
+~io
+
+ε MyEntity {pinst : far pleroma.Pleroma, io-ctx: loc io.Io}
+
+  δ main(env: u8) -&gt; int
+    let node-id : @u32 = pinst ! get-node-id()
+    @ node-id
+        ...
+        
+    io-ctx.println(&quot;Testing, 1.2.3.&quot;)
+</code></pre>
+<p>During object instantiation, the kernel searches for node-unique and then unique objects (tagged in the preamble) until the type is matched.</p>
 
                     </main>
 

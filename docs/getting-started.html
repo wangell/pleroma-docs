@@ -146,8 +146,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>First, download by cloning the Git repository here:</p>
+<p>Install the prerequisites: <code>enet</code> and <code>libprotobuf</code>.  This can be achieved on Ubuntu by running</p>
+<p><code>sudo apt-get install libenet7 libenet-dev protobuf-compiler libprotobuf-dev</code></p>
+<p>Next, download by cloning the Git repository here:</p>
 <pre><code>git clone https://github.com/wangell/pleroma
+</code></pre>
+<p>Ensure that your locale is UTF-8.  You can do this by adding the following to your .bashrc:</p>
+<pre><code>export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
 </code></pre>
 <p>Continue to the <a href="./installation.html">installation instructions</a>.</p>
 

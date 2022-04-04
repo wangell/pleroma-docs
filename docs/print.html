@@ -175,12 +175,20 @@
 </ul>
 <p>Pleroma is versioned according to the solstices.  <code>w22</code> and <code>s22</code> referring to the winter and summer solstices of 2022, respectively.  Versions can't be patched unless there are major security issues, in which case one can append <code>p</code> and an incrementing number (e.g. <code>w22p4</code>).  Otherwise, a version is frozen in time and all new development takes place on the next solstice release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
-<p>First, download by cloning the Git repository here:</p>
+<p>Install the prerequisites: <code>enet</code> and <code>libprotobuf</code>.  This can be achieved on Ubuntu by running</p>
+<p><code>sudo apt-get install libenet7 libenet-dev protobuf-compiler libprotobuf-dev</code></p>
+<p>Next, download by cloning the Git repository here:</p>
 <pre><code>git clone https://github.com/wangell/pleroma
+</code></pre>
+<p>Ensure that your locale is UTF-8.  You can do this by adding the following to your .bashrc:</p>
+<pre><code>export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
 </code></pre>
 <p>Continue to the <a href="./installation.html">installation instructions</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started---installation"><a class="header" href="#getting-started---installation">Getting Started - Installation</a></h1>
-<p>After cloning the repository, follow the instructions for your specific architecture below:</p>
+<p>After cloning the repository and setting up your locale, follow the instructions for your specific architecture below:</p>
 <h2 id="x86--x86_64"><a class="header" href="#x86--x86_64">x86 / x86_64</a></h2>
 <pre><code>cd pleroma
 ./gen_make.sh
@@ -292,28 +300,29 @@ x | my-list
 </code></pre>
 <p>Passes a message and ignores the result.</p>
 <h2 id="promises"><a class="header" href="#promises">Promises</a></h2>
-<pre><code>myProm : Promise u8 := anObject ! doThing
+<pre><code>myProm : @u8 := anObject ! doThing
 </code></pre>
 <p>Promises can be resolved using the resolution operator:</p>
 <pre><code>@ promise-example
-    # do something with the returned value
+    # do something with the returned value, promise-example
     
-@ [more-promises1, more-promises2, more-promises3]
+@ let x : [@] = [more-promises1, more-promises2, more-promises3]
     # Resolve several promises
 </code></pre>
+<p>In this case, each promise variable is shadowed by the resolved version.</p>
 <h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
 <p>Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:</p>
 <pre><code>$anObject(1)
 </code></pre>
-<p>Constructing a new vat always returns the type <code>Promise far object-type</code>, e.g.:</p>
-<pre><code>myProm : Promise far anObject := $anObject(1)
+<p>Constructing a new vat always returns the type <code>@ far object-type</code>, e.g.:</p>
+<pre><code>myProm : @far anObject := $anObject(1)
 
 @ myProm
     # The promise is resolved to a far anObject, we can send messages now
     myProm ! doThing
 </code></pre>
 <p>Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.</p>
-<pre><code>myProm : Promise far anObject := $anObject(1)
+<pre><code>myProm : @ far anObject := $anObject(1)
 
 myProm ! doThing
 </code></pre>
@@ -345,6 +354,20 @@ myProm ! doThing
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---capabilities"><a class="header" href="#hylic---capabilities">Hylic - Capabilities</a></h1>
 <p>Objects in Pleroma can only be accessed/messaged by reference.  It's possible to make your objects accessible from the kernel and to guard them with ACLs.</p>
+<p>Entities are able to access unique or node-unique system objects by adding an inoculation to the entity definition:</p>
+<pre><code>~pleroma
+~io
+
+ε MyEntity {pinst : far pleroma.Pleroma, io-ctx: loc io.Io}
+
+  δ main(env: u8) -&gt; int
+    let node-id : @u32 = pinst ! get-node-id()
+    @ node-id
+        ...
+        
+    io-ctx.println(&quot;Testing, 1.2.3.&quot;)
+</code></pre>
+<p>During object instantiation, the kernel searches for node-unique and then unique objects (tagged in the preamble) until the type is matched.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---alien-types"><a class="header" href="#hylic---alien-types">Hylic - Alien Types</a></h1>
 <p>One of the key features of Pleroma is the ability to interface with foreign clusters.</p>
 <p>This can be achieved using the alien reference type <code>aln</code>.</p>
@@ -356,7 +379,12 @@ myProm ! doThing
 
 </code></pre>
 <p>This creates a messageable object reference, much like a far reference - except that a proxy object is instantiated in its place.</p>
-<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---distributed-primitives"><a class="header" href="#hylic---distributed-primitives">Hylic - Distributed Primitives</a></h1>
+<h2 id="transactional--checkpoint"><a class="header" href="#transactional--checkpoint">Transactional / Checkpoint</a></h2>
+<h2 id="crdts"><a class="header" href="#crdts">CRDTs</a></h2>
+<h2 id="key-value-store"><a class="header" href="#key-value-store">Key-value Store</a></h2>
+<h2 id="consistent-hashing"><a class="header" href="#consistent-hashing">Consistent Hashing</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><div style="break-before: page; page-break-before: always;"></div><h1 id="pleromic-software"><a class="header" href="#pleromic-software">Pleromic Software</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="erd-talk"><a class="header" href="#erd-talk">Erd-talk</a></h1>
 <p>Erd-talk is a web-of-trust/reputation system for URIs.</p>
 <ol>
