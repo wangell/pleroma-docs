@@ -146,6 +146,14 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="hylic---distributed-primitives"><a class="header" href="#hylic---distributed-primitives">Hylic - Distributed Primitives</a></h1>
+<h2 id="arc"><a class="header" href="#arc">ARC</a></h2>
+<p>Entities outside of ones own vat behave similarly to heap-allocated memory - entities must be manually destroyed.  For that reason, a distributed automatic reference count object can be used to handle destruction of entities (a vat will automatically be destroyed when no more entities remain).</p>
+<pre><code>~dis
+
+...
+
+dis.Arc.create($myObj)
+</code></pre>
 <h2 id="transactional--checkpoint"><a class="header" href="#transactional--checkpoint">Transactional / Checkpoint</a></h2>
 <h2 id="crdts"><a class="header" href="#crdts">CRDTs</a></h2>
 <h2 id="key-value-store"><a class="header" href="#key-value-store">Key-value Store</a></h2>

@@ -37,7 +37,9 @@ In this case, each promise variable is shadowed by the resolved version.
 
 ## Vats
 
-Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:
+Vats form local object-graphs - they execute concurrently.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. `myObject.doThis()`.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. `myObject ! doThis()` - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run concurrently, only in parallel.  One can think of a vat like a thread.
+
+Use the following syntax to construct an object in a new vat:
 
 ```
 $anObject(1)

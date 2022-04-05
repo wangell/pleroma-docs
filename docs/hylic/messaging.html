@@ -168,7 +168,8 @@
 </code></pre>
 <p>In this case, each promise variable is shadowed by the resolved version.</p>
 <h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
-<p>Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:</p>
+<p>Vats form local object-graphs - they execute concurrently.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. <code>myObject.doThis()</code>.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. <code>myObject ! doThis()</code> - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run concurrently, only in parallel.  One can think of a vat like a thread.</p>
+<p>Use the following syntax to construct an object in a new vat:</p>
 <pre><code>$anObject(1)
 </code></pre>
 <p>Constructing a new vat always returns the type <code>@ far object-type</code>, e.g.:</p>

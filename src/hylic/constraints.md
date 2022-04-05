@@ -20,3 +20,7 @@ Constraints consist of a list of either tags or boolean expressions.  A tag prec
             ↵ #t
 
 ```
+
+Entity constraints marked with `-` form preambles - that is, they are executed within the kernel before object instantiation.  Preamble expressions don't have access to entity members.
+
+Entity constraints marked with `+` form postambles - which run after instantiation.  Postamble expressions have access to entity members.

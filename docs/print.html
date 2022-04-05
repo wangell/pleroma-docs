@@ -311,7 +311,8 @@ x | my-list
 </code></pre>
 <p>In this case, each promise variable is shadowed by the resolved version.</p>
 <h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
-<p>Vats form local object-graphs.  Use the following syntax to construct an object in a new vat:</p>
+<p>Vats form local object-graphs - they execute concurrently.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. <code>myObject.doThis()</code>.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. <code>myObject ! doThis()</code> - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run concurrently, only in parallel.  One can think of a vat like a thread.</p>
+<p>Use the following syntax to construct an object in a new vat:</p>
 <pre><code>$anObject(1)
 </code></pre>
 <p>Constructing a new vat always returns the type <code>@ far object-type</code>, e.g.:</p>
@@ -352,6 +353,8 @@ myProm ! doThing
             ↵ #t
 
 </code></pre>
+<p>Entity constraints marked with <code>-</code> form preambles - that is, they are executed within the kernel before object instantiation.  Preamble expressions don't have access to entity members.</p>
+<p>Entity constraints marked with <code>+</code> form postambles - which run after instantiation.  Postamble expressions have access to entity members.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---capabilities"><a class="header" href="#hylic---capabilities">Hylic - Capabilities</a></h1>
 <p>Objects in Pleroma can only be accessed/messaged by reference.  It's possible to make your objects accessible from the kernel and to guard them with ACLs.</p>
 <p>Entities are able to access unique or node-unique system objects by adding an inoculation to the entity definition:</p>
@@ -380,6 +383,14 @@ myProm ! doThing
 </code></pre>
 <p>This creates a messageable object reference, much like a far reference - except that a proxy object is instantiated in its place.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="hylic---distributed-primitives"><a class="header" href="#hylic---distributed-primitives">Hylic - Distributed Primitives</a></h1>
+<h2 id="arc"><a class="header" href="#arc">ARC</a></h2>
+<p>Entities outside of ones own vat behave similarly to heap-allocated memory - entities must be manually destroyed.  For that reason, a distributed automatic reference count object can be used to handle destruction of entities (a vat will automatically be destroyed when no more entities remain).</p>
+<pre><code>~dis
+
+...
+
+dis.Arc.create($myObj)
+</code></pre>
 <h2 id="transactional--checkpoint"><a class="header" href="#transactional--checkpoint">Transactional / Checkpoint</a></h2>
 <h2 id="crdts"><a class="header" href="#crdts">CRDTs</a></h2>
 <h2 id="key-value-store"><a class="header" href="#key-value-store">Key-value Store</a></h2>
