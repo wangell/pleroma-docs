@@ -37,7 +37,7 @@ In this case, each promise variable is shadowed by the resolved version.
 
 ## Vats
 
-Vats form local object-graphs - they execute concurrently.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. `myObject.doThis()`.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. `myObject ! doThis()` - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run concurrently, only in parallel.  One can think of a vat like a thread.
+Vats form local object-graphs - they execute parallel to eachother.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. `myObject.doThis()`.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. `myObject ! doThis()` - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run parallely, only concurrently.  One can think of a vat like a thread.
 
 Use the following syntax to construct an object in a new vat:
 
@@ -48,7 +48,7 @@ $anObject(1)
 Constructing a new vat always returns the type `@ far object-type`, e.g.:
 
 ```
-myProm : @far anObject := $anObject(1)
+myProm : @far anObject := $anObject()
 
 @ myProm
     # The promise is resolved to a far anObject, we can send messages now
@@ -58,7 +58,7 @@ myProm : @far anObject := $anObject(1)
 Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.
 
 ```
-myProm : @ far anObject := $anObject(1)
+myProm : @ far anObject := $anObject()
 
 myProm ! doThing
 ```

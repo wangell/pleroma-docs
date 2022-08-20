@@ -2,7 +2,7 @@
 
 And what the bleep do we know?
 
-Pleroma is a distributed, object-oriented operating system/VM inspired by the original vision of Alan Kay's Smalltalk, the E programming language, and Plan9/Inferno.
+Pleroma is a distributed, object-oriented operating system/VM inspired by the original vision of Alan Kay's Smalltalk, the E programming language, and Inferno/Plan9.
 
 The creator or creators of Pleroma are entirely unknown - it is a found operating system.  The specification was discovered in a cache located in Oxyrhynchus, Egypt dating back to the 3rd century.
 
