@@ -146,6 +146,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<h2 id="docker-quickstart"><a class="header" href="#docker-quickstart">Docker Quickstart</a></h2>
+<p>This requires the latest docker + docker compose to be installed, first.</p>
+<pre><code>git clone https://github.com/wangell/pleroma
+docker compose run pleroma
+</code></pre>
+<p>Once inside the container, run:</p>
+<pre><code>./pleroma start
+</code></pre>
+<p>to run the &quot;Hello, world!&quot; example on a single-node cluster.</p>
+<h2 id="manual-installation"><a class="header" href="#manual-installation">Manual Installation</a></h2>
 <p>Install the prerequisites: <code>enet</code> and <code>libprotobuf</code>.  This can be achieved on Ubuntu by running</p>
 <p><code>sudo apt-get install libenet7 libenet-dev protobuf-compiler libprotobuf-dev</code></p>
 <p>Next, download by cloning the Git repository here:</p>

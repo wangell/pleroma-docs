@@ -148,7 +148,7 @@
                     <main>
                         <h1 id="what-is-pleroma"><a class="header" href="#what-is-pleroma">What is Pleroma?</a></h1>
 <p>And what the bleep do we know?</p>
-<p>Pleroma is a distributed, object-oriented operating system/VM inspired by the original vision of Alan Kay's Smalltalk, the E programming language, and Plan9/Inferno.</p>
+<p>Pleroma is a distributed, object-oriented operating system/VM inspired by the original vision of Alan Kay's Smalltalk, the E programming language, and Inferno/Plan9.</p>
 <p>The creator or creators of Pleroma are entirely unknown - it is a found operating system.  The specification was discovered in a cache located in Oxyrhynchus, Egypt dating back to the 3rd century.</p>
 <p>Pleroma is the answer to the following questions/problems:</p>
 <ul>
@@ -175,6 +175,16 @@
 </ul>
 <p>Pleroma is versioned according to the solstices.  <code>w22</code> and <code>s22</code> referring to the winter and summer solstices of 2022, respectively.  Versions can't be patched unless there are major security issues, in which case one can append <code>p</code> and an incrementing number (e.g. <code>w22p4</code>).  Otherwise, a version is frozen in time and all new development takes place on the next solstice release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h1>
+<h2 id="docker-quickstart"><a class="header" href="#docker-quickstart">Docker Quickstart</a></h2>
+<p>This requires the latest docker + docker compose to be installed, first.</p>
+<pre><code>git clone https://github.com/wangell/pleroma
+docker compose run pleroma
+</code></pre>
+<p>Once inside the container, run:</p>
+<pre><code>./pleroma start
+</code></pre>
+<p>to run the &quot;Hello, world!&quot; example on a single-node cluster.</p>
+<h2 id="manual-installation"><a class="header" href="#manual-installation">Manual Installation</a></h2>
 <p>Install the prerequisites: <code>enet</code> and <code>libprotobuf</code>.  This can be achieved on Ubuntu by running</p>
 <p><code>sudo apt-get install libenet7 libenet-dev protobuf-compiler libprotobuf-dev</code></p>
 <p>Next, download by cloning the Git repository here:</p>
@@ -311,19 +321,19 @@ x | my-list
 </code></pre>
 <p>In this case, each promise variable is shadowed by the resolved version.</p>
 <h2 id="vats"><a class="header" href="#vats">Vats</a></h2>
-<p>Vats form local object-graphs - they execute concurrently.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. <code>myObject.doThis()</code>.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. <code>myObject ! doThis()</code> - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run concurrently, only in parallel.  One can think of a vat like a thread.</p>
+<p>Vats form local object-graphs - they execute parallel to eachother.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. <code>myObject.doThis()</code>.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. <code>myObject ! doThis()</code> - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run parallely, only concurrently.  One can think of a vat like a thread.</p>
 <p>Use the following syntax to construct an object in a new vat:</p>
 <pre><code>$anObject(1)
 </code></pre>
 <p>Constructing a new vat always returns the type <code>@ far object-type</code>, e.g.:</p>
-<pre><code>myProm : @far anObject := $anObject(1)
+<pre><code>myProm : @far anObject := $anObject()
 
 @ myProm
     # The promise is resolved to a far anObject, we can send messages now
     myProm ! doThing
 </code></pre>
 <p>Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.</p>
-<pre><code>myProm : @ far anObject := $anObject(1)
+<pre><code>myProm : @ far anObject := $anObject()
 
 myProm ! doThing
 </code></pre>

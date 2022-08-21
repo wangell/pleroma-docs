@@ -1,5 +1,24 @@
 # Getting Started
 
+## Docker Quickstart
+
+This requires the latest docker + docker compose to be installed, first.
+
+```
+git clone https://github.com/wangell/pleroma
+docker compose run pleroma
+```
+
+Once inside the container, run:
+
+```
+./pleroma start
+```
+
+to run the "Hello, world!" example on a single-node cluster.
+
+## Manual Installation
+
 Install the prerequisites: `enet` and `libprotobuf`.  This can be achieved on Ubuntu by running
 
 `sudo apt-get install libenet7 libenet-dev protobuf-compiler libprotobuf-dev`
