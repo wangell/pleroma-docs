@@ -17,6 +17,8 @@ Once inside the container, run:
 
 to run the "Hello, world!" example on a single-node cluster.
 
+You're ready to start your Pleroma journey, continue to [allo instructions](./allo.md).
+
 ## Manual Installation
 
 Install the prerequisites: `enet` and `libprotobuf`.  This can be achieved on Ubuntu by running
