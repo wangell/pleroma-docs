@@ -18,12 +18,12 @@ On a typical filesystem, you might have a path called `System > Programs > ...` 
 
 In Zeno, files have a name, but directories don't exist.  Instead, every file has multiple tags, e.g.
 
-`
+```
 filename: MyPhoto.jpg
 user: MyUser
 who: Will
 type: FamilyPhotos
-`
+```
 
 and you can view these tags through a "telescope" or "lens".  The lens allows you to change the structure of your files without affecting the underlying files.
 
