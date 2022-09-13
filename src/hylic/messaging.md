@@ -37,7 +37,7 @@ In this case, each promise variable is shadowed by the resolved version.
 
 ## Vats
 
-Vats form local object-graphs - they execute parallel to eachother.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. `myObject.doThis()`.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. `myObject ! doThis()` - which executes asynchronously.  Objects within a vat can also be called asynchronously - but calls will not run parallely, only concurrently.  One can think of a vat like a thread.
+Vats form local object-graphs (think: thread, think: process) - they execute parallel to eachother.  Every program starts in its own vat.  All objects created within that vat can be accessed via a regular function call, e.g. `myObject.doThis()`.  The function will then run synchronously.  To access objects outside of one's own vat, messaging must be used, e.g. `myObject ! doThis()` - which executes asynchronously.  Functions of objects within a vat can also be called asynchronously - but calls will not run parallely, only concurrently.  When a vat gets a message, it goes into a queue.  Each message is processed one by one.  One can think of a vat like a thread.
 
 Use the following syntax to construct an object in a new vat:
 
@@ -58,7 +58,7 @@ myProm : @far anObject := $anObject()
 Alternatively, messages can be sent directly to the promise before resolution.  The messages will be preloaded in the message queue during vat formation.
 
 ```
-myProm : @ far anObject := $anObject()
+myProm : @far anObject := $anObject()
 
 myProm ! doThing
 ```
@@ -75,3 +75,17 @@ To implement an infinite loop within a vat, one must use self-messaging:
         do-something()
         ! loop
 ```
+
+Each entity also contains a variable `self`, which returns a reference to the current entity `self ! loop`.
+
+## Pure Objects
+
+Pure objects contain only pure functions and no data members.  They cannot be instantiated and are access via the Entity name.
+
+```
+Ɵ HelloWorld
+    λ add-world(hello-string: str)
+        ↵ hello-string + ", world!"
+```
+
+And to call it from another entity, just use `HelloWorld.add-world("Hello")`.  No need to instantiate it.

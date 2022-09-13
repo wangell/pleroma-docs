@@ -4,7 +4,7 @@
 ~sys
 
 ε HelloWorld
-	δ main(env: sys.env) -> u8
+	δ main(env: sys►Env) -> u8
 		loc a : u8 := 1 + 1
 ```
 
@@ -22,7 +22,7 @@ This line specifies an entity called HelloWorld.  Everything in Pleroma is an en
 Every entity contains data and functions.  An entity specification is not an entity itself - just a blueprint.
 
 ```
-δ main(env: sys.env) -> u8
+δ main(env: sys►Env) -> u8
 ```
 
 Says that there is a function `main`, that takes a variable `env` of type `sys.env` and returns an `int`.
@@ -41,9 +41,9 @@ Float: f32, f64
 
 Boolean: bool (`#t`/`#f`)
 
-Character: char (`a)
+Character: char (``a`)
 
-String: str 
+String: str
 
 ## Conditionals
 
@@ -83,3 +83,21 @@ x | my-list
 ```
 
 Indices can be extracted from the list by adding an additional variable `i, x | my-list`
+
+## Return
+
+Use `↵` to return a value from a function.
+
+## Comments
+
+Comments can be added by surrounding a statement with `♦`.  Comments can be multi-line, too.
+
+`♦ This is a comment ♦`
+
+## Casting
+
+```
+let q: u8 = 4
+
+let z: s8 = as(q, s8)
+```

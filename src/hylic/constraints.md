@@ -5,22 +5,23 @@ Entities can be configured to be scheduled according to constraints.  If an Enti
 Constraints consist of a list of either tags or boolean expressions.  A tag preceded by an & operator will call the equivalent function.  A true boolean function/expression means that the object is able to be scheduled on a node.
 
 ```
-~resources rsc
-~node nd
+~sys►resources rsc
+~sys►node nd
 
 ε HelloWorld
     - nd.is("unixborn")
     - rsc.has("keyboard")
     - rsc.gt("monitors", 2)
     - boolean-callback boolean-collision
+    - nd.each()
 
-	δ boolean-callback(node: node.env) -> bool
+	δ boolean-callback(env: nd►Env) -> bool
         ...
         ? rsc.present("keyboard")
             ↵ #t
 
 ```
 
-Entity constraints marked with `-` form preambles - that is, they are executed within the kernel before object instantiation.  Preamble expressions don't have access to entity members.
+Entity constraints marked with `-` form preambles - that is, they are executed within the kernel before object instantiation.  Preamble expressions don't have access to entity members.  They form an execution plan.
 
-Entity constraints marked with `+` form postambles - which run after instantiation.  Postamble expressions have access to entity members.
+Entity constraints marked with `+` form postambles - which run after instantiation.  Postamble expressions have access to entity members.  Not everything can go according to plan, postambles react to and change previously made execution plans.
