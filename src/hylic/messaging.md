@@ -80,7 +80,7 @@ Each entity also contains a variable `self`, which returns a reference to the cu
 
 ## Pure Objects
 
-Pure objects contain only pure functions and no data members.  They cannot be instantiated and are access via the Entity name.
+Pure objects contain only pure functions and no data members.  They cannot be instantiated and are accessed via the Entity name.
 
 ```
 Ɵ HelloWorld
